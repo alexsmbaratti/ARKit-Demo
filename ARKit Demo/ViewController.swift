@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        addBox() // Create a small box
     }
     
     /*
@@ -32,6 +32,21 @@ class ViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         arKitSceneView.session.pause()
+    }
+    
+    /*
+    Method assisted with tutorial: https://www.appcoda.com/arkit-introduction-scenekit
+    */
+    func addBox() {
+        let box = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
+        
+        let boxNode = SCNNode()
+        boxNode.geometry = box
+        boxNode.position = SCNVector3(0, 0, -0.1)
+        
+        let scene = SCNScene()
+        scene.rootNode.addChildNode(boxNode)
+        arKitSceneView.scene = scene
     }
 
 }
